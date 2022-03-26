@@ -54,17 +54,16 @@ function FeedPopupButton() {
   };
 
   return (
-    <div className="feedwrite">
-      <div className="feedwrite__top">
-        <Avatar src={user.photoURL} />
-        <form>
-          {/* by default, it is type='text'  */}
+    <div className="FeedPopupButton">
+      <div className="FeedPopupButton__top">
+        <div>
+          <Avatar src={user.photoURL} />
           <input
             readOnly
             value={input}
             // onChange={(e) => setInput(e.target.value)}
             onClick={openModal}
-            className="feedwrite__input"
+            className="FeedPopupButton__input"
             placeholder={`What's on your mind, ${user.displayName}?`}
           />
           <Modal open={modalOpen} close={closeModal} header="Modal heading">
@@ -74,21 +73,21 @@ function FeedPopupButton() {
           <button onClick={handleSubmit} type="submit">
             Hidden Submit
           </button>
-        </form>
+        </div>
       </div>
 
-      <div className="feedwrite__bottom">
-        <div className="feedwrite__option">
+      <div className="FeedPopupButton__bottom">
+        <div className="FeedPopupButton__option">
           <VideocamIcon style={{ color: "red" }} />
           <h3>Live Video</h3>
         </div>
 
-        <div className="feedwrite__option">
+        <div className="FeedPopupButton__option">
           <PhotoLibraryIcon style={{ color: "green" }} />
           <h3>Photo/Video</h3>
         </div>
 
-        <div className="feedwrite__option">
+        <div className="FeedPopupButton__option">
           <InsertEmoticonIcon style={{ color: "orange" }} />
           <h3>Feeling/Activity</h3>
         </div>

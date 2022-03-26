@@ -1,6 +1,5 @@
-.messageSender {
+.FeedModalContents {
   display: flex;
-  margin-top: 30px;
   /* so all the childrens get stacked */
   flex-direction: column;
   background-color: white;
@@ -9,19 +8,19 @@
   width: 100%;
 }
 
-.messageSender__top {
+.FeedModalContents__top {
   display: flex;
   border-bottom: 1px solid #eff2f5;
   /* padding-bottom: 15px; */
   /* padding: 15px; */
 }
 
-.messageSender__top > form {
+.FeedModalContents__top > form {
   flex: 1;
   display: flex;
 }
 
-.messageSender__top > form > input {
+.FeedModalContents__top > form > input {
   outline-width: 0;
   border: none;
   padding: 5px 20px;
@@ -30,27 +29,27 @@
   background-color: #eff2f5;
 }
 
-.messageSender__top > form > button {
+.FeedModalContents__top > from > button {
   display: none;
 }
 
 /*  
 @media (max-width: 1200px) {
-    .messageSender__top > form > button {
+    .FeedModalContents__top > form > button {
         display: visible;
     }
 }   */
 
-.messageSender__input {
+.FeedModalContents__input {
   flex: 1;
 }
 
-.messageSender__bottom {
+.FeedModalContents__bottom {
   display: flex;
   justify-content: space-evenly;
 }
 
-.messageSender__option {
+.FeedModalContents__option {
   padding-left: 20px;
   padding-right: 20px;
   display: flex;
@@ -59,13 +58,13 @@
   margin: 5px;
 }
 
-.messageSender__option > h3 {
+.FeedModalContents__option > h3 {
   font-size: medium;
   margin-left: 10px;
   cursor: pointer;
 }
 
-.messageSender__option:hover {
+.FeedModalContents__option:hover {
   background-color: #eff2f5;
   border-radius: 20px;
 }

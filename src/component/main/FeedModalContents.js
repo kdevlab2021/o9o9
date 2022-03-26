@@ -5,6 +5,7 @@ import PhotoLibraryIcon from "@material-ui/icons/PhotoLibrary";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import { ButtonBase } from "@mui/material";
 import "./FeedModalContents.css";
+import FeedModalHashtags from "./FeedModalHashtags";
 
 const FeedModalContents = () => {
   const [input, setInput] = useState("");
@@ -59,43 +60,43 @@ const FeedModalContents = () => {
           variant="outlined"
         ></TextField>
       </div>
-      <form name="myform">
-        <div className="messageSender">
-          <div className="messageSender__bottom">
-            <div className="messageSender__option">
-              <ButtonBase variant="contained" component="label">
-                <input
-                  type="file"
-                  hidden
-                  onChange={(e) => encodeFileToBase64(e.target.files[0])}
-                />
-                <PhotoLibraryIcon style={{ color: "green" }} />
-                &nbsp;&nbsp;<h3>Photo</h3>
-              </ButtonBase>
-            </div>
 
-            <div className="messageSender__option">
-              <ButtonBase variant="contained" component="label">
-                <input
-                  type="file"
-                  hidden
-                  accept="img/*"
-                  onChange={(e) => encodeFileToBase64(e.target.files[0])}
-                />
-                <VideocamIcon style={{ color: "red" }} />
-                &nbsp;&nbsp;<h3>Video</h3>
-              </ButtonBase>
-            </div>
+      <FeedModalHashtags />
+      <div className="FeedModalContents">
+        <div className="FeedModalContents__bottom">
+          <div className="FeedModalContents__option">
+            <ButtonBase variant="contained" component="label">
+              <input
+                type="file"
+                hidden
+                onChange={(e) => encodeFileToBase64(e.target.files[0])}
+              />
+              <PhotoLibraryIcon style={{ color: "green" }} />
+              &nbsp;&nbsp;<h3>Photo</h3>
+            </ButtonBase>
+          </div>
 
-            <div className="messageSender__option">
-              <ButtonBase variant="contained" component="label">
-                <InsertEmoticonIcon style={{ color: "orange" }} />
-                &nbsp;&nbsp;<h3>Save</h3>
-              </ButtonBase>
-            </div>
+          <div className="FeedModalContents__option">
+            <ButtonBase variant="contained" component="label">
+              <input
+                type="file"
+                hidden
+                accept="img/*"
+                onChange={(e) => encodeFileToBase64(e.target.files[0])}
+              />
+              <VideocamIcon style={{ color: "red" }} />
+              &nbsp;&nbsp;<h3>Video</h3>
+            </ButtonBase>
+          </div>
+
+          <div className="FeedModalContents__option">
+            <ButtonBase variant="contained" component="label">
+              <InsertEmoticonIcon style={{ color: "orange" }} />
+              &nbsp;&nbsp;<h3>Save</h3>
+            </ButtonBase>
           </div>
         </div>
-      </form>
+      </div>
     </>
   );
 };
