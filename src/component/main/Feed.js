@@ -7,6 +7,7 @@ import Post from "./Post";
 import { useInView } from "react-intersection-observer";
 import axios from "axios";
 import { SettingsRemoteSharp } from "@material-ui/icons";
+import FeedPopupButton from "./FeedPopupButton";
 
 function createBulkPosts() {
   const array = [];
@@ -72,7 +73,7 @@ function Feed() {
 
   return (
     <div className="feed">
-      <FeedWrite />
+      <FeedPopupButton />
       {posts.map(({ profilePic, message, timestamp, username, image }, idx) => (
         <Fragment key={idx}>
           {posts.length - 1 === idx ? (
