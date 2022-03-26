@@ -12,9 +12,6 @@ const FeedModalHashtags = () => {
   };
   const onKeyUp = useCallback(
     (e) => {
-      e.preventDefault();
-      if (window.event.keyCode === 13) return;
-
       if (typeof window !== "undefined") {
         /* 요소 불러오기, 만들기*/
         const $HashWrapOuter = document.querySelector(".HashWrapOuter");
@@ -29,7 +26,10 @@ const FeedModalHashtags = () => {
         });
 
         /* enter 키 코드 :13 */
-        if (window.event.keyCode === 32 && e.target.value.trim() !== "") {
+        if (
+          (window.event.keyCode === 32 || window.event.keyCode === 13) &&
+          e.target.value.trim() !== ""
+        ) {
           //if (e.target.value.trim() !== "") {
           $HashWrapInner.innerHTML = "#" + e.target.value;
           $HashWrapOuter?.appendChild($HashWrapInner);
@@ -51,7 +51,7 @@ const FeedModalHashtags = () => {
           value={hashtag}
           onChange={onChangeHashtag}
           onKeyUp={onKeyUp}
-          placeholder="해시태그 입력하고 스페이스 바를 눌러주세요"
+          placeholder="해시태그 입력"
         />
       </div>
     </div>
