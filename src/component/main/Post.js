@@ -69,28 +69,39 @@ function Post({ profilePic, image, username, timestamp, message }) {
       <div className="reply">
         <Box
           sx={{
-            width: 500,
+            width: 550,
             maxWidth: "100%",
           }}
         >
-          <div>{isShow && <TextField fullWidth />}</div>
-          <div>
-            {isShow && <Button style={{ float: "right" }}>댓글달기</Button>}
-          </div>
+          {isShow && (
+            <>
+              <Box sx={{ height: 100 }}>
+                <div>
+                  <TextField fullWidth />
+                </div>
+                <div>
+                  <Button style={{ float: "right" }}>댓글달기</Button>
+                </div>
+              </Box>
 
+              <div>
+                <PostReply
+                  profile_url="https://raw.githubusercontent.com/emilyoun/Facebook-Clone-with-REACT/main/Screen%20Shot%202021-01-02%20at%206.03.01%20PM.png"
+                  writer="테스트1"
+                  contents={
+                    "안녕하세요!!안녕하세요!!안녕하세요!!안녕하세요!!안녕하세요!!안녕하세요!! 안녕하세요!!안녕하세요!!안녕하세요!!안녕하세요!!안녕하세요!!안녕하세요!! "
+                  }
+                />
+              </div>
+            </>
+          )}
           <div>
             {isShow && (
               <PostReply
-                writer="테스트1"
-                contents={
-                  "안녕하세요!!안녕하세요!!안녕하세요!!안녕하세요!!안녕하세요!!안녕하세요!! "
-                }
+                profile_url=""
+                writer={"테스트2"}
+                contents={"감사합니다."}
               />
-            )}
-          </div>
-          <div>
-            {isShow && (
-              <PostReply writer={"테스트2"} contents={"감사합니다."} />
             )}
           </div>
         </Box>
