@@ -1,12 +1,9 @@
 import React, { Fragment, useCallback, useEffect, useState } from "react";
 import "./Feed.css";
-import FeedWrite from "./FeedPopupButton";
-import StoryReal from "./StoryReal";
 // import MessageSender from "./MessageSender";
 import Post from "./Post";
 import { useInView } from "react-intersection-observer";
 import axios from "axios";
-import { SettingsRemoteSharp } from "@material-ui/icons";
 import FeedPopupButton from "./FeedPopupButton";
 
 function createBulkPosts() {
@@ -26,41 +23,53 @@ function createBulkPosts() {
   return array;
 }
 
-function Feed() {
-  const [posts, setPosts] = useState(createBulkPosts);
+function Feed({ keyword }) {
+  const [posts, setPosts] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [ref, inView] = useInView();
+  const [empty, setEmpty] = useState(false);
 
   // 서버 통신 부분
-  // const getPosts = useCallback(async () => {
-  //   setLoading(true);
-
-  // await axios.get(`localhost:9090/post/list/${page}`).then((res) => {
-  //   setPosts((prevState) => [...prevState, res]);
-  // });
-  //   setLoading(false);
-  // }, [page]);
-
-  // 테스트용
   const getPosts = useCallback(async () => {
     setLoading(true);
-    setPosts((prevState) => [...prevState, ...createBulkPosts()]);
+    await axios
+      .get(`http://localhost:9090/mboard/list/${page}?keyword=${keyword}`)
+      .then((res) => {
+        console.log(res);
+        const newlist = res.data.list;
+        if (newlist.length === 0) setEmpty(true);
+        setPosts((prevState) => [...prevState, ...newlist]);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+
     setLoading(false);
   }, [page]);
+
+  // 테스트용
+  // const getPosts = useCallback(async () => {
+  //   setLoading(true);
+  //   setPosts((prevState) => [...prevState, ...createBulkPosts()]);
+  //   setLoading(false);
+  // }, [page]);
 
   // posts 가 바뀔때마다 함수 실행
   useEffect(() => {
     getPosts();
   }, [getPosts]);
 
-  // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면,
+  // 사용자가 마지막 요소를 보고 있고,
+  // 로딩 중이 아니라면,
+  // 호출될 데이터가 있다면,
   useEffect(() => {
     console.log(1, inView, loading, 2);
-    if (inView && !loading) {
+    if (inView && !loading && !empty) {
       setPage((prevState) => prevState + 1);
+      console.log("page", page);
     }
-  }, [inView, loading]);
+  }, [inView, loading, empty]);
 
   //! realtime connection
   //useEffect(() => {
@@ -74,29 +83,36 @@ function Feed() {
   return (
     <div className="feed">
       <FeedPopupButton />
-      {posts.map(({ profilePic, message, timestamp, username, image }, idx) => (
-        <Fragment key={idx}>
-          {posts.length - 1 === idx ? (
-            <div ref={ref}>
+      {posts.map(
+        (
+          { user_image, contents, wdate, user_name, contents_url, hashtag },
+          idx
+        ) => (
+          <Fragment key={idx}>
+            {posts.length - 1 === idx ? (
+              <div ref={ref}>
+                <Post
+                  profilePic={user_image}
+                  message={contents}
+                  timestamp={wdate}
+                  username={user_name}
+                  image={contents_url}
+                  hashtag={hashtag}
+                />
+              </div>
+            ) : (
               <Post
-                profilePic={profilePic}
-                message={message}
-                timestamp={timestamp}
-                username={username}
-                image={image}
+                profilePic={user_image}
+                message={contents}
+                timestamp={wdate}
+                username={user_name}
+                image={contents_url}
+                hashtag={hashtag}
               />
-            </div>
-          ) : (
-            <Post
-              profilePic={profilePic}
-              message={message}
-              timestamp={timestamp}
-              username={username}
-              image={image}
-            />
-          )}
-        </Fragment>
-      ))}
+            )}
+          </Fragment>
+        )
+      )}
     </div>
   );
 }

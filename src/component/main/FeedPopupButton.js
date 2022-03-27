@@ -6,8 +6,6 @@ import PhotoLibraryIcon from "@material-ui/icons/PhotoLibrary";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import { useStateValue } from "./StateProvider";
 import Modal from "./FeedModal";
-// import db from './firebase';
-// import firebase from 'firebase';
 
 function FeedPopupButton() {
   // const [{ user }, dispatch] = useStateValue();

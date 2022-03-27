@@ -6,13 +6,11 @@ import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
 import NearMeIcon from "@material-ui/icons/NearMe";
 import { ExpandMoreOutlined } from "@material-ui/icons";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import Comment from "./PostReply";
-import { Button, ButtonBase, InputBase, TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import "./Feed.css";
-import Reply from "./PostReply";
 import PostReply from "./PostReply";
 
-function Post({ profilePic, image, username, timestamp, message }) {
+function Post({ profilePic, image, username, timestamp, message, hashtag }) {
   console.log(profilePic);
 
   const [isShow, setIsShow] = useState(false);
@@ -32,12 +30,17 @@ function Post({ profilePic, image, username, timestamp, message }) {
           <h3>{username}</h3>
           {/* just use when you need to update time */}
           {/* <p>{new Date(timestamp?.toDate()).toUTCString()}</p> */}
-          <p>{new Date().toUTCString()}</p>
+          <p>{timestamp}</p>
         </div>
       </div>
 
       <div className="post__bottom">
         <p>{message}</p>
+        {hashtag.split("#").map((data) => (
+          <a style={{ paddingRight: 5 }} href={`/feed/hashtag/${data}`}>
+            #{data}
+          </a>
+        ))}
       </div>
 
       <div className="post__image">
