@@ -5,6 +5,7 @@ import Post from "./Post";
 import { useInView } from "react-intersection-observer";
 import axios from "axios";
 import FeedPopupButton from "./FeedPopupButton";
+import HashTagBox from "./HashTagBox";
 
 function createBulkPosts() {
   const array = [];
@@ -29,6 +30,7 @@ function Feed({ keyword }) {
   const [loading, setLoading] = useState(false);
   const [ref, inView] = useInView();
   const [empty, setEmpty] = useState(false);
+  const [showHashtag, setShowHashtag] = useState(false);
 
   // 서버 통신 부분
   const getPosts = useCallback(async () => {
@@ -46,7 +48,7 @@ function Feed({ keyword }) {
       });
 
     setLoading(false);
-  }, [page]);
+  }, [page, keyword]);
 
   // 테스트용
   // const getPosts = useCallback(async () => {
@@ -71,6 +73,12 @@ function Feed({ keyword }) {
     }
   }, [inView, loading, empty]);
 
+  useEffect(() => {
+    if (keyword !== "") {
+      setShowHashtag(true);
+    }
+  }, [keyword]);
+
   //! realtime connection
   //useEffect(() => {
   // db.collection("posts")
@@ -82,6 +90,7 @@ function Feed({ keyword }) {
 
   return (
     <div className="feed">
+      {showHashtag && <HashTagBox keyword={keyword} />}
       <FeedPopupButton />
       {posts.map(
         (
