@@ -9,6 +9,7 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { Button, TextField } from "@mui/material";
 import "./Feed.css";
 import PostReply from "./PostReply";
+import { Link } from "react-router-dom";
 
 function Post({ profilePic, image, username, timestamp, message, hashtag }) {
   console.log(profilePic);
@@ -37,9 +38,9 @@ function Post({ profilePic, image, username, timestamp, message, hashtag }) {
       <div className="post__bottom">
         <p>{message}</p>
         {hashtag.split("#").map((data) => (
-          <a style={{ paddingRight: 5 }} href={`/feed/hashtag/${data}`}>
+          <Link style={{ paddingRight: 5 }} to={`/feed/hashtag/${data}`}>
             #{data}
-          </a>
+          </Link>
         ))}
       </div>
 

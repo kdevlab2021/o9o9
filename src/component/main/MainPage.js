@@ -9,6 +9,9 @@ import Profile from "./Profile";
 
 function MianPage() {
   const params = useParams();
+  useEffect(() => {
+    console.log("MianPage", params.keyword);
+  }, [params.keyword]);
 
   // const [{ user }, dispatch] = useStateValue();
 
