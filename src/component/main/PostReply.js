@@ -23,7 +23,7 @@ const PostReply = ({ profile_url, writer, contents }) => {
         <Box sx={{ width: "400px", marginLeft: "10px" }}>{contents}</Box>
       </Box>
       <DeleteForeverRounded
-        style={{ marginLeft: "5px", marginBottom: "12px" }}
+        style={{ marginLeft: "5px", marginBottom: "12px", cursor: "pointer" }}
       />
     </Box>
   );
