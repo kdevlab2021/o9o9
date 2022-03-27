@@ -19,7 +19,7 @@ const HashTagBox = ({ keyword }) => {
         <CardMedia
           component="img"
           sx={{ width: 151, float: "right" }}
-          image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtOjQHIpy-9kUbSHG3O9jklA162i0jMDObqN2h6S2IGny9NPdQqjHw3Pyh6g3tiTsqOBM&usqp=CAU"
+          image="https://ph-files.imgix.net/ee05ca52-b419-44bb-b99f-3f92899fcf41.png?auto=format"
           alt="Live from space album cover"
         />
         <CardContent>
