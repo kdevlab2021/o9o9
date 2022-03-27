@@ -1,15 +1,20 @@
 import "./FeedModalHashtags.css";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
-const FeedModalHashtags = () => {
+const FeedModalHashtags = ({ hashArr, setHashArr }) => {
   // onChange로 관리할 문자열
   const [hashtag, setHashtag] = useState("");
   // 해시태그를 담을 배열
-  const [hashArr, setHashArr] = useState([]);
+  //const [hashArr, setHashArr] = useState([""]);
 
   const onChangeHashtag = (e) => {
     setHashtag(e.target.value);
   };
+
+  // useEffect(() => {
+  //   console.log(hashArr);
+  // }, [hashArr]);
+
   const onKeyUp = useCallback(
     (e) => {
       if (typeof window !== "undefined") {

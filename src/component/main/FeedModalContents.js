@@ -13,7 +13,13 @@ const FeedModalContents = () => {
   const [files, setFiles] = useState("");
   const [isShow, setIsShow] = useState(false);
   const [imageSrc, setImageSrc] = useState("");
+  const [hashArr, setHashArr] = useState([""]);
 
+  useEffect(() => {
+    console.log(hashArr);
+  }, [hashArr]);
+
+  // 사진 미리보기
   const encodeFileToBase64 = (fileBlob) => {
     const reader = new FileReader();
     reader.readAsDataURL(fileBlob);
@@ -23,16 +29,6 @@ const FeedModalContents = () => {
         resolve();
       };
     });
-  };
-
-  const user = {
-    profilePic:
-      "https://raw.githubusercontent.com/emilyoun/Facebook-Clone-with-REACT/main/Screen%20Shot%202021-01-02%20at%206.03.01%20PM.png",
-    message: "WOW this works! ",
-    timestamp: "This is a timestamp",
-    username: "emilyoun",
-    image:
-      "https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/cat_relaxing_on_patio_other/1800x1200_cat_relaxing_on_patio_other.jpg",
   };
 
   return (
@@ -61,7 +57,8 @@ const FeedModalContents = () => {
         ></TextField>
       </div>
 
-      <FeedModalHashtags />
+      <FeedModalHashtags hashArr={hashArr} setHashArr={setHashArr} />
+
       <div className="FeedModalContents">
         <div className="FeedModalContents__bottom">
           <div className="FeedModalContents__option">

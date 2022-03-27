@@ -11,6 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<MianPage />} />
         <Route path="*" element={<NoMatch />} />
+        <Route path="feed/hashtag/:keyword" element={<MianPage />} />
         {/* <Route index element={<Main />} />
           <Route path="feed" element={<Feed />} />
           <Route path="sidebar" element={<Sidebar />} />
