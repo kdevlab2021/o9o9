@@ -80,6 +80,9 @@ function Feed({ keyword }) {
       setPage(1);
       setLoading(false);
       setEmpty(false);
+      window.onbeforeunload = function pushRefresh() {
+        window.scrollTo(0, 0);
+      };
     }
   }, [keyword]);
 
