@@ -66,16 +66,23 @@ function Feed({ keyword }) {
   // 로딩 중이 아니라면,
   // 호출될 데이터가 있다면,
   useEffect(() => {
-    console.log(1, inView, loading, 2);
+    console.log("infinite", inView, !loading, !empty, page);
     if (inView && !loading && !empty) {
       setPage((prevState) => prevState + 1);
       console.log("page", page);
     }
-  }, [inView, loading, empty]);
+  }, [inView, loading, empty, page]);
 
   useEffect(() => {
     if (keyword !== "") {
       setShowHashtag(true);
+      setPosts([]);
+      setPage(1);
+      setLoading(false);
+      setEmpty(false);
+      window.onbeforeunload = function pushRefresh() {
+        window.scrollTo(0, 0);
+      };
     }
   }, [keyword]);
 
